@@ -3,6 +3,15 @@
 
     <item
         is-multidex="true"
+        jar="/root/.android/build-cache/806b715dbb7e20d8a6f494edcd772f450db80497/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="fa0446a14ed5dd3725047d6399ffea771a564b30">
+        <dex dex="/home/brennan/programming/AwarenessTesting/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_67e3cb11fc0751ddb587b7ca344625451a2cf047/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/root/.android/build-cache/94c57b763c32e1ea0105ef8c7d149571741b4200/output/jars/classes.jar"
         jumboMode="true"
         optimize="true"
@@ -18,6 +27,15 @@
         revision="25.0.3"
         sha1="5687d5d0a5cc1113f84a0477d8fdd3b91222d26e">
         <dex dex="/home/brennan/programming/AwarenessTesting/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_0918d1a2b752c62397d56955befb1cd6ca7a58e0/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/root/.android/build-cache/3330bc5840b795fe49ec38fe7eb1125dbeab3f08/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="5f43d6c042ee8eb48fa7606da4d1034d472a43cd">
+        <dex dex="/home/brennan/programming/AwarenessTesting/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_d5c859664de16f8bd5498b302af5483630e1f8d1/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -39,60 +57,6 @@
     </item>
     <item
         is-multidex="true"
-        jar="/home/brennan/programming/AwarenessTesting/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.3"
-        sha1="6889350643fab1df47644c5bae005bda84f7c8a8">
-        <dex dex="/home/brennan/programming/AwarenessTesting/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_e8d6ddd9be52d9eff30d87a121bb773a425e907e/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/root/.android/build-cache/b275e3c96f5bad8b839ba71460a2badc6f57075b/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.3"
-        sha1="8fe8a8f77d651982ce5e18f6187dc4daf914ac57">
-        <dex dex="/home/brennan/programming/AwarenessTesting/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_2a4ad186612cb2cee6e5dc00a82cc9c7410e6517/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/root/Android/Sdk/extras/m2repository/com/android/support/constraint/constraint-layout-solver/1.0.2/constraint-layout-solver-1.0.2.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.3"
-        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
-        <dex dex="/home/brennan/programming/AwarenessTesting/app/build/intermediates/transforms/dex/debug/folders/1000/10/constraint-layout-solver-1.0.2_76f81077aea9bd1699aabfb9818dc8fa3bde44df/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/root/.android/build-cache/03be10ca3f655fe934ffb2a3ed2de49f47649bdc/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.3"
-        sha1="0ffbd024a5fd5efda6714beeaa97314b43563f1c">
-        <dex dex="/home/brennan/programming/AwarenessTesting/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_da7b330467293408343b2ff901168c8c7a7b712a/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/root/.android/build-cache/806b715dbb7e20d8a6f494edcd772f450db80497/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.3"
-        sha1="fa0446a14ed5dd3725047d6399ffea771a564b30">
-        <dex dex="/home/brennan/programming/AwarenessTesting/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_67e3cb11fc0751ddb587b7ca344625451a2cf047/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/root/.android/build-cache/3330bc5840b795fe49ec38fe7eb1125dbeab3f08/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.3"
-        sha1="5f43d6c042ee8eb48fa7606da4d1034d472a43cd">
-        <dex dex="/home/brennan/programming/AwarenessTesting/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_d5c859664de16f8bd5498b302af5483630e1f8d1/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/root/.android/build-cache/6c35393e43a36a21b511cd64dc95d6d6e41c0079/output/jars/classes.jar"
         jumboMode="true"
         optimize="true"
@@ -111,12 +75,30 @@
     </item>
     <item
         is-multidex="true"
+        jar="/home/brennan/programming/AwarenessTesting/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="16f6e822f941ea32d0e8eae4073455df9a68d88a">
+        <dex dex="/home/brennan/programming/AwarenessTesting/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_e8d6ddd9be52d9eff30d87a121bb773a425e907e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/home/brennan/programming/AwarenessTesting/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.3"
         sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
         <dex dex="/home/brennan/programming/AwarenessTesting/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_a257ee0ae42ef7c230ee127ae008119e46bf5ac6/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/root/.android/build-cache/b275e3c96f5bad8b839ba71460a2badc6f57075b/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="8fe8a8f77d651982ce5e18f6187dc4daf914ac57">
+        <dex dex="/home/brennan/programming/AwarenessTesting/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_2a4ad186612cb2cee6e5dc00a82cc9c7410e6517/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -138,6 +120,15 @@
     </item>
     <item
         is-multidex="true"
+        jar="/root/Android/Sdk/extras/m2repository/com/android/support/constraint/constraint-layout-solver/1.0.2/constraint-layout-solver-1.0.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="/home/brennan/programming/AwarenessTesting/app/build/intermediates/transforms/dex/debug/folders/1000/10/constraint-layout-solver-1.0.2_76f81077aea9bd1699aabfb9818dc8fa3bde44df/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/root/.android/build-cache/b7d4f217c0412c38f9fb35e161b15a87460854da/output/jars/classes.jar"
         jumboMode="true"
         optimize="true"
@@ -153,6 +144,15 @@
         revision="25.0.3"
         sha1="ee394a892dd21c03a528139c1e8d4e0e1264ac84">
         <dex dex="/home/brennan/programming/AwarenessTesting/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_53c3b4bbbbfda0bd4addfcfd3f9fc0a6bcc4d4f7/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/root/.android/build-cache/03be10ca3f655fe934ffb2a3ed2de49f47649bdc/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="0ffbd024a5fd5efda6714beeaa97314b43563f1c">
+        <dex dex="/home/brennan/programming/AwarenessTesting/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_da7b330467293408343b2ff901168c8c7a7b712a/classes.dex" />
     </item>
     <item
         is-multidex="true"

@@ -113,6 +113,7 @@ public class MainActivity extends Activity implements GoogleApiClient.OnConnecti
                     .build();
         }
 
+
         vehicleFence = DetectedActivityFence.during(DetectedActivityFence.IN_VEHICLE);
         bicycleFence = DetectedActivityFence.during(DetectedActivityFence.ON_BICYCLE);
         footFence = DetectedActivityFence.during(DetectedActivityFence.ON_FOOT);
@@ -176,6 +177,9 @@ public class MainActivity extends Activity implements GoogleApiClient.OnConnecti
                 Log.e(getText(R.string.main_activity).toString(), getText(R.string.fences_not_removed).toString());
             }
         });
+
+        googleApiClient.unregisterConnectionCallbacks(this);
+        googleApiClient.unregisterConnectionFailedListener(this);
 
         if (googleApiClient != null) {
             googleApiClient.disconnect();

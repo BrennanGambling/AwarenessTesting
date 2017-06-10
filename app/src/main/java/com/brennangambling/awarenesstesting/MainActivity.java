@@ -88,7 +88,7 @@ public class MainActivity extends Activity implements GoogleApiClient.OnConnecti
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        debugLogging(this,"MainActivity", "onCreate called.");
+        debugLogging(this, getText(R.string.main_activity).toString(), getText(R.string.on_create).toString());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //get TextViews for displaying status of each of the following activities.
@@ -105,11 +105,11 @@ public class MainActivity extends Activity implements GoogleApiClient.OnConnecti
         //set all TextViews text to N/A.
         TextView[] textViews = {vehicleTextView, bicycleTextView, footTextView, walkingTextView, runningTextView, stillTextView, tiltingTextView, unknownTextView, headphoneTextView};
         for (TextView current : textViews) {
-            current.setText("N/A");
+            current.setText(getText(R.string.state_NA).toString());
         }
 
         if (googleApiClient == null) {
-            Log.d("Main Activity", "Building Google API Client.");
+            debugLogging(this, getText(R.string.main_activity).toString(), getText(R.string.build_api_client).toString());
             googleApiClient = new GoogleApiClient.Builder(this)
                     .addConnectionCallbacks(this)
                     .addOnConnectionFailedListener(this)
@@ -138,13 +138,13 @@ public class MainActivity extends Activity implements GoogleApiClient.OnConnecti
 
     @Override
     protected void onDestroy() {
-        debugLogging(this, "MainActivity", "onDestroy called.");
+        debugLogging(this, getText(R.string.main_activity).toString(), getText(R.string.on_destroy).toString());
         super.onDestroy();
     }
 
     @Override
     protected void onStart() {
-        debugLogging(this, "MainActivity", "onStart called.");
+        debugLogging(this, getText(R.string.main_activity).toString(), getText(R.string.on_start).toString());
         if (googleApiClient != null) {
             googleApiClient.connect();
         }
@@ -166,9 +166,9 @@ public class MainActivity extends Activity implements GoogleApiClient.OnConnecti
                     @Override
                     public void onResult(@NonNull Status status) {
                         if(status.isSuccess()) {
-                            Log.d(TAG, "Fence was successfully registered.");
+                            Log.d(getText(R.string.main_activity).toString(), getText(R.string.fence_registered).toString());
                         } else {
-                            Log.e(TAG, "Fence was NOT successfully registered.: " + status);
+                            Log.e(getText(R.string.main_activity).toString(), getText(R.string.fence_not_registered).toString() + status);
                         }
                     }
                 });
@@ -179,7 +179,7 @@ public class MainActivity extends Activity implements GoogleApiClient.OnConnecti
 
     @Override
     protected void onStop() {
-        debugLogging(this, "MainActivity", "onStop called.");
+        debugLogging(this, getText(R.string.main_activity).toString(), getText(R.string.on_stop).toString());
         if (googleApiClient != null && (googleApiClient.isConnected() || googleApiClient.isConnecting())) {
             googleApiClient.disconnect();
         }
@@ -201,12 +201,12 @@ public class MainActivity extends Activity implements GoogleApiClient.OnConnecti
 
             @Override
             public void onSuccess(@NonNull Status status) {
-                Log.d(TAG, "Fences successfully removed.");
+                Log.d(getText(R.string.main_activity).toString(), getText(R.string.fences_removed).toString());
             }
 
             @Override
             public void onFailure(@NonNull Status status) {
-                Log.e(TAG, "Fences were NOT successfully removed.");
+                Log.e(getText(R.string.main_activity).toString(), getText(R.string.fences_not_removed).toString());
             }
         });
 
@@ -217,7 +217,7 @@ public class MainActivity extends Activity implements GoogleApiClient.OnConnecti
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
-        debugLogging(this, "MainActivity", "onSaveInstanceState called.");
+        debugLogging(this, getText(R.string.main_activity).toString(), getText(R.string.on_save_instance_state).toString());
         super.onSaveInstanceState(savedInstanceState);
         savedInstanceState.putString(VEHICLE_KEY, vehicleTextView.getText().toString());
         savedInstanceState.putString(BICYCLE_KEY, bicycleTextView.getText().toString());
@@ -232,7 +232,7 @@ public class MainActivity extends Activity implements GoogleApiClient.OnConnecti
 
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
-        debugLogging(this, "MainActivity", "onRestoreInstanceState called.");
+        debugLogging(this, getText(R.string.main_activity).toString(), getText(R.string.on_restore_instance_state).toString());
         super.onRestoreInstanceState(savedInstanceState);
         vehicleTextView.setText(savedInstanceState.getString(VEHICLE_KEY));
         bicycleTextView.setText(savedInstanceState.getString(BICYCLE_KEY));
@@ -247,17 +247,18 @@ public class MainActivity extends Activity implements GoogleApiClient.OnConnecti
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-        debugLogging(this, "MainActivity", "onConnected called.");
+        debugLogging(this, getText(R.string.main_activity).toString(), getString(R.string.on_connected).toString());
     }
 
     @Override
     public void onConnectionSuspended(int i) {
-        debugLogging(this, "MainActivity", "onConnectionSuspended called.");
+        debugLogging(this, getText(R.string.main_activity).toString(), getText(R.string.on_connection_suspended).toString());
     }
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-        debugLogging(this, "MainActivity", "onConnectionFailed called. Retrying connection.");
+        debugLogging(this, getText(R.string.main_activity).toString(), getText(R.string.on_connection_failed).toString());
+        debugLogging(this, getText(R.string.main_activity).toString(), getText(R.string.connection_result).toString() + connectionResult.toString());
         if (googleApiClient != null) {
             googleApiClient.connect();
         }
@@ -267,7 +268,7 @@ public class MainActivity extends Activity implements GoogleApiClient.OnConnecti
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            debugLogging(context, "FenceBroadcastReceiver", "onReceive called.");
+            debugLogging(context, getText(R.string.fence_broadcast_receiver).toString(), getText(R.string.on_receive).toString());
             FenceState fenceState = FenceState.extract(intent);
             if(fenceState.getFenceKey().equals(VEHICLE_KEY)) {
 

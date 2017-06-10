@@ -1,3 +1,52 @@
 <resources>
     <string name="app_name">AwarenessTesting</string>
+
+    <!--Logging tags-->
+    <string name="main_activity">Main Activity</string>
+    <string name="fence_broadcast_receiver">Fence Broadcast Receiver</string>
+
+    <!--onEvent messages-->
+    <string name="on_create">onCreate called.</string>
+    <string name="on_start">onStart called.</string>
+    <string name="on_stop">onStop called.</string>
+    <string name="on_destroy">onDestroy called.</string>
+    <string name="on_save_instance_state">onSaveInstanceState called.</string>
+    <string name="on_restore_instance_state">onRestoreInstanceState called.</string>
+    <string name="on_connected">onConnected called.</string>
+    <string name="on_connection_suspended">onConnectionSuspended called.</string>
+    <string name="on_connection_failed">onConnectionFailed called. Retrying connection.</string>
+    <string name="on_receive">onReceive called.</string>
+
+    <!--Fence registration messages-->
+    <string name="fence_registered">Fence was successfully registered.</string>
+    <string name="fence_not_registered">Fence was NOT successfully registered: </string>
+    <string name="fences_removed">Fences were successfully removed.</string>
+    <string name="fences_not_removed">Fences were NOT successfully removed.</string>
+
+    <!--Fence names-->
+    <string name="vehicle_fence">Vehicle Fence</string>
+    <string name="bicycle_fence">Bicycle Fence</string>
+    <string name="foot_fence">Foot Fence</string>
+    <string name="walking_fence">Walking Fence</string>
+    <string name="running_fence">Running Fence</string>
+    <string name="still_fence">Still Fence</string>
+    <string name="tilting_fence">Tilting Fence</string>
+    <string name="unknown_fence">Unknown Fence</string>
+    <string name="headphone_fence">Headphone Fence</string>
+
+    <!--Fence state messages-->
+    <string name="unrecognized_fence">Fence state for unrecognized fence returned.</string>
+    <string name="unrecognized_fence_state">Unrecognized fence state returned.</string>
+    <string name="state_NA">N/A</string>
+    <string name="state_true">True</string>
+    <string name="is_true"> is true.</string>
+    <string name="state_false">False</string>
+    <string name="is_false"> is false.</string>
+    <string name="state_unknown">Unknown</string>
+    <string name="is_unknown"> is unknown.</string>
+
+    <!--Google APIs-->
+    <string name="build_api_client">Building Google API Client.</string>
+    <string name="connection_result">Connection result: </string>
+
 </resources>

@@ -57,21 +57,21 @@
     </item>
     <item
         is-multidex="true"
+        jar="/home/brennan/programming/AwarenessTesting/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="6889350643fab1df47644c5bae005bda84f7c8a8">
+        <dex dex="/home/brennan/programming/AwarenessTesting/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_e8d6ddd9be52d9eff30d87a121bb773a425e907e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/home/brennan/programming/AwarenessTesting/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.3"
         sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
         <dex dex="/home/brennan/programming/AwarenessTesting/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_a257ee0ae42ef7c230ee127ae008119e46bf5ac6/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/brennan/programming/AwarenessTesting/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.3"
-        sha1="7e87d620f04314fe2e396c9efc6dc0c74dafd2b4">
-        <dex dex="/home/brennan/programming/AwarenessTesting/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_e8d6ddd9be52d9eff30d87a121bb773a425e907e/classes.dex" />
     </item>
     <item
         is-multidex="true"

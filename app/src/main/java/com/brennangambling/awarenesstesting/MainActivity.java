@@ -1,13 +1,11 @@
 package com.brennangambling.awarenesstesting;
 
-import android.Manifest;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -27,8 +25,6 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.ResultCallbacks;
 import com.google.android.gms.common.api.Status;
-
-import static com.google.android.gms.internal.zzt.TAG;
 
 public class MainActivity extends Activity implements GoogleApiClient.OnConnectionFailedListener, GoogleApiClient.ConnectionCallbacks{
 
@@ -148,41 +144,12 @@ public class MainActivity extends Activity implements GoogleApiClient.OnConnecti
         if (googleApiClient != null) {
             googleApiClient.connect();
         }
-
-        Awareness.FenceApi.updateFences(
-                googleApiClient,
-                new FenceUpdateRequest.Builder()
-                        .addFence(VEHICLE_KEY, vehicleFence, fencePendingIntent)
-                        .addFence(BICYCLE_KEY, bicycleFence, fencePendingIntent)
-                        .addFence(FOOT_KEY, footFence, fencePendingIntent)
-                        .addFence(WALKING_KEY, walkingFence, fencePendingIntent)
-                        .addFence(RUNNING_KEY, runningFence, fencePendingIntent)
-                        .addFence(STILL_KEY, stillFence, fencePendingIntent)
-                        .addFence(TILTING_KEY, tiltingFence, fencePendingIntent)
-                        .addFence(UNKNOWN_KEY, unknownFence, fencePendingIntent)
-                        .addFence(HEADPHONE_KEY, headphoneFence, fencePendingIntent)
-                        .build())
-                .setResultCallback(new ResultCallback<Status>() {
-                    @Override
-                    public void onResult(@NonNull Status status) {
-                        if(status.isSuccess()) {
-                            Log.d(getText(R.string.main_activity).toString(), getText(R.string.fence_registered).toString());
-                        } else {
-                            Log.e(getText(R.string.main_activity).toString(), getText(R.string.fence_not_registered).toString() + status);
-                        }
-                    }
-                });
-
-        registerReceiver(fenceBroadcastReceiver, fenceIntentFilter);
         super.onStart();
     }
 
     @Override
     protected void onStop() {
         debugLogging(this, getText(R.string.main_activity).toString(), getText(R.string.on_stop).toString());
-        if (googleApiClient != null && (googleApiClient.isConnected() || googleApiClient.isConnecting())) {
-            googleApiClient.disconnect();
-        }
 
         Awareness.FenceApi.updateFences(
                 googleApiClient,
@@ -210,6 +177,9 @@ public class MainActivity extends Activity implements GoogleApiClient.OnConnecti
             }
         });
 
+        if (googleApiClient != null) {
+            googleApiClient.disconnect();
+        }
 
         unregisterReceiver(fenceBroadcastReceiver);
         super.onStop();
@@ -248,6 +218,30 @@ public class MainActivity extends Activity implements GoogleApiClient.OnConnecti
     @Override
     public void onConnected(@Nullable Bundle bundle) {
         debugLogging(this, getText(R.string.main_activity).toString(), getString(R.string.on_connected).toString());
+        Awareness.FenceApi.updateFences(
+                googleApiClient,
+                new FenceUpdateRequest.Builder()
+                        .addFence(VEHICLE_KEY, vehicleFence, fencePendingIntent)
+                        .addFence(BICYCLE_KEY, bicycleFence, fencePendingIntent)
+                        .addFence(FOOT_KEY, footFence, fencePendingIntent)
+                        .addFence(WALKING_KEY, walkingFence, fencePendingIntent)
+                        .addFence(RUNNING_KEY, runningFence, fencePendingIntent)
+                        .addFence(STILL_KEY, stillFence, fencePendingIntent)
+                        .addFence(TILTING_KEY, tiltingFence, fencePendingIntent)
+                        .addFence(UNKNOWN_KEY, unknownFence, fencePendingIntent)
+                        .addFence(HEADPHONE_KEY, headphoneFence, fencePendingIntent)
+                        .build())
+                .setResultCallback(new ResultCallback<Status>() {
+                    @Override
+                    public void onResult(@NonNull Status status) {
+                        if(status.isSuccess()) {
+                            Log.d(getText(R.string.main_activity).toString(), getText(R.string.fence_registered).toString());
+                        } else {
+                            Log.e(getText(R.string.main_activity).toString(), getText(R.string.fence_not_registered).toString() + " " + status);
+                        }
+                    }
+                });
+        registerReceiver(fenceBroadcastReceiver, fenceIntentFilter);
     }
 
     @Override
@@ -270,18 +264,84 @@ public class MainActivity extends Activity implements GoogleApiClient.OnConnecti
         public void onReceive(Context context, Intent intent) {
             debugLogging(context, getText(R.string.fence_broadcast_receiver).toString(), getText(R.string.on_receive).toString());
             FenceState fenceState = FenceState.extract(intent);
-            if(fenceState.getFenceKey().equals(VEHICLE_KEY)) {
-
+            String fenceKey = fenceState.getFenceKey();
+            switch(fenceKey) {
+                case VEHICLE_KEY:
+                    checkState(context, getText(R.string.vehicle_fence).toString(), vehicleTextView, fenceState);
+                    break;
+                case BICYCLE_KEY:
+                    checkState(context, getText(R.string.bicycle_fence).toString(), bicycleTextView, fenceState);
+                    break;
+                case FOOT_KEY:
+                    checkState(context, getText(R.string.foot_fence).toString(), footTextView, fenceState);
+                    break;
+                case WALKING_KEY:
+                    checkState(context, getText(R.string.walking_fence).toString(), walkingTextView, fenceState);
+                    break;
+                case RUNNING_KEY:
+                    checkState(context, getText(R.string.running_fence).toString(), runningTextView, fenceState);
+                    break;
+                case STILL_KEY:
+                    checkState(context, getText(R.string.still_fence).toString(), stillTextView, fenceState);
+                    break;
+                case TILTING_KEY:
+                    checkState(context, getText(R.string.tilting_fence).toString(), tiltingTextView, fenceState);
+                    break;
+                case UNKNOWN_KEY:
+                    checkState(context, getText(R.string.unknown_fence).toString(), unknownTextView, fenceState);
+                    break;
+                case HEADPHONE_KEY:
+                    checkState(context, getText(R.string.headphone_fence).toString(), headphoneTextView, fenceState);
+                    break;
+                default:
+                    debugLogging(context, getText(R.string.fence_broadcast_receiver).toString(), getText(R.string.unrecognized_fence).toString());
+                    break;
             }
         }
 
-        private void setState(Context context, String fenceName, TextView textView, FenceState fenceState) {
-            /*switch (fenceState.getCurrentState()) {
+        private void checkState(Context context, String fenceName, TextView textView, FenceState fenceState) {
+            int currentState = fenceState.getCurrentState();
+            int previousState = fenceState.getPreviousState();
+            switch (currentState) {
                 case FenceState.TRUE:
-                    debugLogging(context, "FenceBroadcastReceiver:", fenceName + " is true.");
+                    setState(context, fenceName, getText(R.string.state_true).toString(), textView);
                     break;
-                case FenceStat
-            }*/
+                case FenceState.FALSE:
+                    setState(context, fenceName, getText(R.string.state_false).toString(), textView);
+                    break;
+                case FenceState.UNKNOWN:
+                    setState(context, fenceName, getText(R.string.state_unknown).toString(), textView);
+                    break;
+                default:
+                    debugLogging(context, getText(R.string.fence_broadcast_receiver).toString(), getText(R.string.unrecognized_fence_state).toString());
+                    break;
+            }
+
+            switch (previousState) {
+                case FenceState.TRUE:
+                    printPreviousState(context, fenceName, getText(R.string.state_true).toString());
+                    break;
+                case FenceState.FALSE:
+                    printPreviousState(context, fenceName, getText(R.string.state_false).toString());
+                    break;
+                case FenceState.UNKNOWN:
+                    printPreviousState(context, fenceName, getText(R.string.state_unknown).toString());
+                    break;
+                default:
+                    debugLogging(context, getText(R.string.fence_broadcast_receiver).toString(), getText(R.string.unrecognized_fence_state).toString());
+                    break;
+            }
+        }
+
+        private void setState(Context context, String fenceName, String fenceState, TextView textView) {
+            textView.setText(fenceState);
+            String message = getText(R.string.current_fence_state).toString() + " " + fenceName + " " + getText(R.string.is).toString() + " " + fenceState;
+            debugLogging(context, getText(R.string.fence_broadcast_receiver).toString(), message);
+        }
+
+        private void printPreviousState(Context context, String fenceName, String fenceState) {
+            String message = getText(R.string.previous_fence_state).toString()+ " " + fenceName + " " + getText(R.string.was).toString() + " " + fenceState;
+            debugLogging(context, getText(R.string.fence_broadcast_receiver).toString(), message);
         }
 
 

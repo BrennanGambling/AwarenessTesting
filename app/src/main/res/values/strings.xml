@@ -19,7 +19,7 @@
 
     <!--Fence registration messages-->
     <string name="fence_registered">Fence was successfully registered.</string>
-    <string name="fence_not_registered">Fence was NOT successfully registered: </string>
+    <string name="fence_not_registered">Fence was NOT successfully registered:</string>
     <string name="fences_removed">Fences were successfully removed.</string>
     <string name="fences_not_removed">Fences were NOT successfully removed.</string>
 
@@ -35,15 +35,16 @@
     <string name="headphone_fence">Headphone Fence</string>
 
     <!--Fence state messages-->
+    <string name="current_fence_state">Current fence state for</string>
+    <string name="previous_fence_state">Previous fence state for</string>
+    <string name="is">is</string>
+    <string name="was">was</string>
     <string name="unrecognized_fence">Fence state for unrecognized fence returned.</string>
     <string name="unrecognized_fence_state">Unrecognized fence state returned.</string>
     <string name="state_NA">N/A</string>
     <string name="state_true">True</string>
-    <string name="is_true"> is true.</string>
     <string name="state_false">False</string>
-    <string name="is_false"> is false.</string>
     <string name="state_unknown">Unknown</string>
-    <string name="is_unknown"> is unknown.</string>
 
     <!--Google APIs-->
     <string name="build_api_client">Building Google API Client.</string>

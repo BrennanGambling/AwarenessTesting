@@ -36,7 +36,6 @@ public class MainActivity extends Activity implements GoogleApiClient.OnConnecti
     static private final String WALKING_KEY = "RNNueGrEwxKSfzeOFJ12";
     static private final String RUNNING_KEY = "drNVr5D08denKnW4hcBC";
     static private final String STILL_KEY = "ht5eSdcg3IemR37eo2iD";
-    static private final String TILTING_KEY = "9l2VHeupiS3tLgqjvKLO";
     static private final String UNKNOWN_KEY = "NqK6TmIrMs48CPkybWE1";
     static private final String HEADPHONE_KEY = "KhJmptvo9uvPC3FR0EkA";
 
@@ -46,7 +45,6 @@ public class MainActivity extends Activity implements GoogleApiClient.OnConnecti
     private TextView walkingTextView;
     private TextView runningTextView;
     private TextView stillTextView;
-    private TextView tiltingTextView;
     private TextView unknownTextView;
     private TextView headphoneTextView;
 
@@ -56,23 +54,12 @@ public class MainActivity extends Activity implements GoogleApiClient.OnConnecti
     private AwarenessFence walkingFence;
     private AwarenessFence runningFence;
     private AwarenessFence stillFence;
-    private AwarenessFence tiltingFence;
     private AwarenessFence unknownFence;
     private AwarenessFence headphoneFence;
 
     private PendingIntent fencePendingIntent;
     private IntentFilter fenceIntentFilter;
     private FenceBroadcastReceiver fenceBroadcastReceiver;
-
-    /*private boolean vehicleState;
-    private boolean bicycleState;
-    private boolean footState;
-    private boolean walkingState;
-    private boolean runningState;
-    private boolean stillState;
-    private boolean tiltingState;
-    private boolean unknownState;
-    private boolean headphoneState;*/
 
     private GoogleApiClient googleApiClient;
 
@@ -94,12 +81,11 @@ public class MainActivity extends Activity implements GoogleApiClient.OnConnecti
         walkingTextView = (TextView) findViewById(R.id.walkingText);
         runningTextView = (TextView) findViewById(R.id.runningText);
         stillTextView = (TextView) findViewById(R.id.stillText);
-        tiltingTextView = (TextView) findViewById(R.id.tiltingText);
         unknownTextView = (TextView) findViewById(R.id.unknownText);
         headphoneTextView = (TextView) findViewById(R.id.headphonesText);
 
         //set all TextViews text to N/A.
-        TextView[] textViews = {vehicleTextView, bicycleTextView, footTextView, walkingTextView, runningTextView, stillTextView, tiltingTextView, unknownTextView, headphoneTextView};
+        TextView[] textViews = {vehicleTextView, bicycleTextView, footTextView, walkingTextView, runningTextView, stillTextView, unknownTextView, headphoneTextView};
         for (TextView current : textViews) {
             current.setText(getText(R.string.state_NA).toString());
         }
@@ -118,7 +104,6 @@ public class MainActivity extends Activity implements GoogleApiClient.OnConnecti
         walkingFence = DetectedActivityFence.during(DetectedActivityFence.WALKING);
         runningFence = DetectedActivityFence.during(DetectedActivityFence.RUNNING);
         stillFence = DetectedActivityFence.during(DetectedActivityFence.STILL);
-        tiltingFence = DetectedActivityFence.during(DetectedActivityFence.TILTING);
         unknownFence = DetectedActivityFence.during(DetectedActivityFence.UNKNOWN);
         headphoneFence = HeadphoneFence.during(HeadphoneState.PLUGGED_IN);
 
@@ -161,7 +146,6 @@ public class MainActivity extends Activity implements GoogleApiClient.OnConnecti
                         .removeFence(WALKING_KEY)
                         .removeFence(RUNNING_KEY)
                         .removeFence(STILL_KEY)
-                        .removeFence(TILTING_KEY)
                         .removeFence(UNKNOWN_KEY)
                         .removeFence(HEADPHONE_KEY)
                         .build()).setResultCallback(new ResultCallbacks<Status>() {
@@ -200,7 +184,6 @@ public class MainActivity extends Activity implements GoogleApiClient.OnConnecti
         savedInstanceState.putString(WALKING_KEY, walkingTextView.getText().toString());
         savedInstanceState.putString(RUNNING_KEY, runningTextView.getText().toString());
         savedInstanceState.putString(STILL_KEY, stillTextView.getText().toString());
-        savedInstanceState.putString(TILTING_KEY, tiltingTextView.getText().toString());
         savedInstanceState.putString(UNKNOWN_KEY, unknownTextView.getText().toString());
         savedInstanceState.putString(HEADPHONE_KEY, headphoneTextView.getText().toString());
     }
@@ -215,7 +198,6 @@ public class MainActivity extends Activity implements GoogleApiClient.OnConnecti
         walkingTextView.setText(savedInstanceState.getString(WALKING_KEY));
         runningTextView.setText(savedInstanceState.getString(RUNNING_KEY));
         stillTextView.setText(savedInstanceState.getString(STILL_KEY));
-        tiltingTextView.setText(savedInstanceState.getString(TILTING_KEY));
         unknownTextView.setText(savedInstanceState.getString(UNKNOWN_KEY));
         headphoneTextView.setText(savedInstanceState.getString(HEADPHONE_KEY));
     }
@@ -232,7 +214,6 @@ public class MainActivity extends Activity implements GoogleApiClient.OnConnecti
                         .addFence(WALKING_KEY, walkingFence, fencePendingIntent)
                         .addFence(RUNNING_KEY, runningFence, fencePendingIntent)
                         .addFence(STILL_KEY, stillFence, fencePendingIntent)
-                        .addFence(TILTING_KEY, tiltingFence, fencePendingIntent)
                         .addFence(UNKNOWN_KEY, unknownFence, fencePendingIntent)
                         .addFence(HEADPHONE_KEY, headphoneFence, fencePendingIntent)
                         .build())
@@ -288,9 +269,6 @@ public class MainActivity extends Activity implements GoogleApiClient.OnConnecti
                     break;
                 case STILL_KEY:
                     checkState(context, getText(R.string.still_fence).toString(), stillTextView, fenceState);
-                    break;
-                case TILTING_KEY:
-                    checkState(context, getText(R.string.tilting_fence).toString(), tiltingTextView, fenceState);
                     break;
                 case UNKNOWN_KEY:
                     checkState(context, getText(R.string.unknown_fence).toString(), unknownTextView, fenceState);

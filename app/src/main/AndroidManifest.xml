@@ -2,8 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.brennangambling.awarenesstesting">
 
+    <!--Required permission to use the Google Awareness DetectedActivityFence API.-->
+    <!--https://developers.google.com/awareness/android-api/required-permissions-->
     <uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -18,6 +20,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--Your Google APIs API key. You must obtain you own key before building the app otherwise your GoogleApiClient will not be able to connect.-->
+        <!--This API key is restricted to apps signed by my signing keys.-->
+        <!--Guide for signing up for and restricting usage of Api keys:
+            https://developers.google.com/awareness/android-api/get-a-key-->
+        <!--Guide for signing apps and managing signing keys:
+            https://developer.android.com/studio/publish/app-signing.html-->
         <meta-data
             android:name="com.google.android.awareness.API_KEY"
             android:value="AIzaSyAo1k_WIx9bg4UBPE9QtHtjCY3MVb0YB-A"/>

@@ -49,5 +49,6 @@
     <!--Google APIs-->
     <string name="build_api_client">Building Google API Client.</string>
     <string name="connection_result">Connection result: </string>
+    <string name="google_api_null">Google API Client is null.</string>
 
 </resources>

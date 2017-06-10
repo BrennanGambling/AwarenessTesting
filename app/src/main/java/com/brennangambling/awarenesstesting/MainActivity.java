@@ -104,14 +104,12 @@ public class MainActivity extends Activity implements GoogleApiClient.OnConnecti
             current.setText(getText(R.string.state_NA).toString());
         }
 
-        if (googleApiClient == null) {
-            debugLogging(this, getText(R.string.main_activity).toString(), getText(R.string.build_api_client).toString());
-            googleApiClient = new GoogleApiClient.Builder(this)
-                    .addConnectionCallbacks(this)
-                    .addOnConnectionFailedListener(this)
-                    .addApi(Awareness.API)
-                    .build();
-        }
+        debugLogging(this, getText(R.string.main_activity).toString(), getText(R.string.build_api_client).toString());
+        googleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(Awareness.API)
+                .build();
 
 
         vehicleFence = DetectedActivityFence.during(DetectedActivityFence.IN_VEHICLE);
@@ -144,6 +142,8 @@ public class MainActivity extends Activity implements GoogleApiClient.OnConnecti
         debugLogging(this, getText(R.string.main_activity).toString(), getText(R.string.on_start).toString());
         if (googleApiClient != null) {
             googleApiClient.connect();
+        } else {
+            debugLogging(this, getText(R.string.main_activity).toString(), getText(R.string.google_api_null).toString());
         }
         super.onStart();
     }
@@ -166,7 +166,6 @@ public class MainActivity extends Activity implements GoogleApiClient.OnConnecti
                         .removeFence(HEADPHONE_KEY)
                         .build()).setResultCallback(new ResultCallbacks<Status>() {
 
-
             @Override
             public void onSuccess(@NonNull Status status) {
                 Log.d(getText(R.string.main_activity).toString(), getText(R.string.fences_removed).toString());
@@ -183,6 +182,8 @@ public class MainActivity extends Activity implements GoogleApiClient.OnConnecti
 
         if (googleApiClient != null) {
             googleApiClient.disconnect();
+        } else {
+            debugLogging(this, getText(R.string.main_activity).toString(), getText(R.string.google_api_null).toString());
         }
 
         unregisterReceiver(fenceBroadcastReceiver);

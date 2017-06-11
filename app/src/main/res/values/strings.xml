@@ -23,6 +23,16 @@
     <string name="fences_removed">Fences were successfully removed.</string>
     <string name="fences_not_removed">Fences were NOT successfully removed.</string>
 
+    <!--TextView text-->
+    <string name="in_vehicle">Is In Vehicle: </string>
+    <string name="on_bicycle">Is On Bicycle: </string>
+    <string name="on_foot">Is On Foot: </string>
+    <string name="is_walking">Is Walking: </string>
+    <string name="is_running">Is Running: </string>
+    <string name="is_still">Is Still: </string>
+    <string name="is_unknown">Is Unknown: </string>
+    <string name="headphones_in">Headphones In: </string>
+
     <!--Fence names-->
     <string name="vehicle_fence">Vehicle Fence</string>
     <string name="bicycle_fence">Bicycle Fence</string>

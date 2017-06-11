@@ -26,7 +26,7 @@ Each of the horizontal LinearLayouts have the same width as the parent layout an
             android:layout_weight="2"
             android:gravity="center_vertical"
             android:textSize="35sp"
-            android:text="Is In Vehicle: " />
+            android:text="@string/in_vehicle" />
         <TextView
             android:id="@+id/inVehicleText"
             android:layout_width="0dp"
@@ -50,7 +50,7 @@ Each of the horizontal LinearLayouts have the same width as the parent layout an
             android:layout_weight="2"
             android:gravity="center_vertical"
             android:textSize="35sp"
-            android:text="Is On Bicycle: " />
+            android:text="@string/on_bicycle" />
         <TextView
             android:id="@+id/onBicycleText"
             android:layout_width="0dp"
@@ -74,7 +74,7 @@ Each of the horizontal LinearLayouts have the same width as the parent layout an
             android:layout_weight="2"
             android:gravity="center_vertical"
             android:textSize="35sp"
-            android:text="Is On Foot: " />
+            android:text="@string/on_foot" />
         <TextView
             android:id="@+id/onFootText"
             android:layout_width="0dp"
@@ -98,7 +98,7 @@ Each of the horizontal LinearLayouts have the same width as the parent layout an
             android:layout_weight="2"
             android:gravity="center_vertical"
             android:textSize="35sp"
-            android:text="Is Walking: " />
+            android:text="@string/is_walking" />
         <TextView
             android:id="@+id/walkingText"
             android:layout_width="0dp"
@@ -122,7 +122,7 @@ Each of the horizontal LinearLayouts have the same width as the parent layout an
             android:layout_weight="2"
             android:gravity="center_vertical"
             android:textSize="35sp"
-            android:text="Is Running: " />
+            android:text="@string/is_running" />
         <TextView
             android:id="@+id/runningText"
             android:layout_width="0dp"
@@ -146,7 +146,7 @@ Each of the horizontal LinearLayouts have the same width as the parent layout an
             android:layout_weight="2"
             android:gravity="center_vertical"
             android:textSize="35sp"
-            android:text="Is Still: " />
+            android:text="@string/is_still" />
         <TextView
             android:id="@+id/stillText"
             android:layout_width="0dp"
@@ -170,7 +170,7 @@ Each of the horizontal LinearLayouts have the same width as the parent layout an
             android:layout_weight="2"
             android:gravity="center_vertical"
             android:textSize="35sp"
-            android:text="Is Unknown: " />
+            android:text="@string/is_unknown" />
         <TextView
             android:id="@+id/unknownText"
             android:layout_width="0dp"
@@ -194,7 +194,7 @@ Each of the horizontal LinearLayouts have the same width as the parent layout an
             android:layout_weight="2"
             android:gravity="center_vertical"
             android:textSize="35sp"
-            android:text="Headphones In: " />
+            android:text="@string/headphones_in" />
         <TextView
             android:id="@+id/headphonesText"
             android:layout_width="0dp"

@@ -73,6 +73,8 @@ public class MainActivity extends Activity implements GoogleApiClient.OnConnecti
     //The GoogleApiClient used to register the fences.
     private GoogleApiClient googleApiClient;
 
+    private boolean registered = false;
+
     /**
      * Logs the given tag follows by the message to Logcat then creates a tost with the same tag and message.
      * @param context the context used to create the Toast.
@@ -154,6 +156,7 @@ public class MainActivity extends Activity implements GoogleApiClient.OnConnecti
             //if the google api client is null log it.
             debugLogging(this, getText(R.string.main_activity).toString(), getText(R.string.google_api_null).toString());
         }
+        if (googleApiClient.isConnected()) {registerFenceAndReceiver();}
         super.onStart();
     }
 
@@ -161,35 +164,6 @@ public class MainActivity extends Activity implements GoogleApiClient.OnConnecti
     protected void onStop() {
         //log the start of onStop method.
         debugLogging(this, getText(R.string.main_activity).toString(), getText(R.string.on_stop).toString());
-
-        //create fence update request removing all of the fences.
-        Awareness.FenceApi.updateFences(
-                googleApiClient,
-                new FenceUpdateRequest.Builder()
-                        .removeFence(VEHICLE_KEY)
-                        .removeFence(BICYCLE_KEY)
-                        .removeFence(FOOT_KEY)
-                        .removeFence(WALKING_KEY)
-                        .removeFence(RUNNING_KEY)
-                        .removeFence(STILL_KEY)
-                        .removeFence(UNKNOWN_KEY)
-                        .removeFence(HEADPHONE_KEY)
-                        .build()).setResultCallback(new ResultCallbacks<Status>() {
-
-            @Override
-            public void onSuccess(@NonNull Status status) {
-                Log.d(getText(R.string.main_activity).toString(), getText(R.string.fences_removed).toString());
-            }
-
-            @Override
-            public void onFailure(@NonNull Status status) {
-                Log.e(getText(R.string.main_activity).toString(), getText(R.string.fences_not_removed).toString());
-            }
-        });
-
-        //unregister connection callbacks and connection failed listener.
-        googleApiClient.unregisterConnectionCallbacks(this);
-        googleApiClient.unregisterConnectionFailedListener(this);
 
         //if the google api client is not null disconnect.
         if (googleApiClient != null) {
@@ -199,14 +173,17 @@ public class MainActivity extends Activity implements GoogleApiClient.OnConnecti
             debugLogging(this, getText(R.string.main_activity).toString(), getText(R.string.google_api_null).toString());
         }
 
-        //unregister the FenceBroadcastReceiver.
-        unregisterReceiver(fenceBroadcastReceiver);
+        unregisterFenceAndReceiver();
+
         super.onStop();
     }
     @Override
     protected void onDestroy() {
         //log the start of onDestroy method.
         debugLogging(this, getText(R.string.main_activity).toString(), getText(R.string.on_destroy).toString());
+        //unregister connection callbacks and connection failed listener.
+        googleApiClient.unregisterConnectionCallbacks(this);
+        googleApiClient.unregisterConnectionFailedListener(this);
         super.onDestroy();
     }
 
@@ -214,32 +191,7 @@ public class MainActivity extends Activity implements GoogleApiClient.OnConnecti
     public void onConnected(@Nullable Bundle bundle) {
         //log the start of onConnected method.
         debugLogging(this, getText(R.string.main_activity).toString(), getString(R.string.on_connected).toString());
-        //add all fences using there key and the PendingIntent created in onCreate method.
-        Awareness.FenceApi.updateFences(
-                googleApiClient,
-                new FenceUpdateRequest.Builder()
-                        .addFence(VEHICLE_KEY, vehicleFence, fencePendingIntent)
-                        .addFence(BICYCLE_KEY, bicycleFence, fencePendingIntent)
-                        .addFence(FOOT_KEY, footFence, fencePendingIntent)
-                        .addFence(WALKING_KEY, walkingFence, fencePendingIntent)
-                        .addFence(RUNNING_KEY, runningFence, fencePendingIntent)
-                        .addFence(STILL_KEY, stillFence, fencePendingIntent)
-                        .addFence(UNKNOWN_KEY, unknownFence, fencePendingIntent)
-                        .addFence(HEADPHONE_KEY, headphoneFence, fencePendingIntent)
-                        .build())
-                .setResultCallback(new ResultCallback<Status>() {
-                    @Override
-                    public void onResult(@NonNull Status status) {
-                        if(status.isSuccess()) {
-                            Log.d(getText(R.string.main_activity).toString(), getText(R.string.fence_registered).toString());
-                        } else {
-                            Log.e(getText(R.string.main_activity).toString(), getText(R.string.fence_not_registered).toString() + " " + status);
-                        }
-                    }
-                });
-
-        //register the FenceBroadcastReceiver with the FENCE_ACTION IntentFilter.
-        registerReceiver(fenceBroadcastReceiver, fenceIntentFilter);
+        registerFenceAndReceiver();
     }
 
     @Override
@@ -290,6 +242,71 @@ public class MainActivity extends Activity implements GoogleApiClient.OnConnecti
         stillTextView.setText(savedInstanceState.getString(STILL_KEY));
         unknownTextView.setText(savedInstanceState.getString(UNKNOWN_KEY));
         headphoneTextView.setText(savedInstanceState.getString(HEADPHONE_KEY));
+    }
+
+    public void registerFenceAndReceiver() {
+        if (!registered) {
+            registered = true;
+            //add all fences using there key and the PendingIntent created in onCreate method.
+            Awareness.FenceApi.updateFences(
+                    googleApiClient,
+                    new FenceUpdateRequest.Builder()
+                            .addFence(VEHICLE_KEY, vehicleFence, fencePendingIntent)
+                            .addFence(BICYCLE_KEY, bicycleFence, fencePendingIntent)
+                            .addFence(FOOT_KEY, footFence, fencePendingIntent)
+                            .addFence(WALKING_KEY, walkingFence, fencePendingIntent)
+                            .addFence(RUNNING_KEY, runningFence, fencePendingIntent)
+                            .addFence(STILL_KEY, stillFence, fencePendingIntent)
+                            .addFence(UNKNOWN_KEY, unknownFence, fencePendingIntent)
+                            .addFence(HEADPHONE_KEY, headphoneFence, fencePendingIntent)
+                            .build())
+                    .setResultCallback(new ResultCallback<Status>() {
+                        @Override
+                        public void onResult(@NonNull Status status) {
+                            if (status.isSuccess()) {
+                                Log.d(getText(R.string.main_activity).toString(), getText(R.string.fence_registered).toString());
+                            } else {
+                                Log.e(getText(R.string.main_activity).toString(), getText(R.string.fence_not_registered).toString() + " " + status);
+                            }
+                        }
+                    });
+
+            //register the FenceBroadcastReceiver with the FENCE_ACTION IntentFilter.
+            registerReceiver(fenceBroadcastReceiver, fenceIntentFilter);
+        }
+    }
+
+    public void unregisterFenceAndReceiver() {
+        if (registered) {
+            registered = false;
+            //create fence update request removing all of the fences.
+            Awareness.FenceApi.updateFences(
+                    googleApiClient,
+                    new FenceUpdateRequest.Builder()
+                            .removeFence(VEHICLE_KEY)
+                            .removeFence(BICYCLE_KEY)
+                            .removeFence(FOOT_KEY)
+                            .removeFence(WALKING_KEY)
+                            .removeFence(RUNNING_KEY)
+                            .removeFence(STILL_KEY)
+                            .removeFence(UNKNOWN_KEY)
+                            .removeFence(HEADPHONE_KEY)
+                            .build()).setResultCallback(new ResultCallbacks<Status>() {
+
+                @Override
+                public void onSuccess(@NonNull Status status) {
+                    Log.d(getText(R.string.main_activity).toString(), getText(R.string.fences_removed).toString());
+                }
+
+                @Override
+                public void onFailure(@NonNull Status status) {
+                    Log.e(getText(R.string.main_activity).toString(), getText(R.string.fences_not_removed).toString());
+                }
+            });
+
+            //unregister the FenceBroadcastReceiver.
+            unregisterReceiver(fenceBroadcastReceiver);
+        }
     }
 
     /**

@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--This vertical LinearLayout contains 8 horizontal LinearLayouts (1 for each of the DetectedActivityFences.
+Each of the horizontal LinearLayouts have the same width as the parent layout and the height is distributed evenly among the LinearLayout.-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,6 +9,11 @@
     android:orientation="vertical"
     tools:context="com.brennangambling.awarenesstesting.MainActivity">
 
+    <!--LinearLayout for the vehicle fence.-->
+    <!--The Linear layout for each of the 8 fences consists of 2 TextViews. The first has a weight
+    of 2 and therefore takes up 2/3 of the entire LinearLayouts width. This TextView contains a description
+    of the fence. The second has a weight of 1 and therefore takes up 1/3 of the entire LinearLayouts
+    width. This TextView contains the state of the fence.-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -30,6 +37,7 @@
             android:textStyle="bold"/>
     </LinearLayout>
 
+    <!--LinearLayout for the bicycle fence-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -53,6 +61,7 @@
             android:textStyle="bold"/>
     </LinearLayout>
 
+    <!--LinearLayout for the foot fence-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -76,6 +85,7 @@
             android:textStyle="bold"/>
     </LinearLayout>
 
+    <!--LinearLayout for the walking fence-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -99,6 +109,7 @@
             android:textStyle="bold"/>
     </LinearLayout>
 
+    <!--LinearLayout for the running fence-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -122,6 +133,7 @@
             android:textStyle="bold"/>
     </LinearLayout>
 
+    <!--LinearLayout for the still fence-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -145,6 +157,7 @@
             android:textStyle="bold"/>
     </LinearLayout>
 
+    <!--LinearLayout for unknown fence-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -168,6 +181,7 @@
             android:textStyle="bold"/>
     </LinearLayout>
 
+    <!--LinearLayout for the headphone fence-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -190,6 +204,4 @@
             android:textSize="35sp"
             android:textStyle="bold"/>
     </LinearLayout>
-
-
 </LinearLayout>
